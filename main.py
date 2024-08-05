@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from password_generator import generate_password
+import pyperclip
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 

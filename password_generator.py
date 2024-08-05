@@ -24,8 +24,6 @@ def generate_password():
 
     random.shuffle(passwords)
 
-    shuffled_password = ''
-    for char in passwords:
-        shuffled_password += char
+    shuffled_password = ''.join(passwords)
 
     return shuffled_password
