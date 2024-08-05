@@ -1,14 +1,15 @@
 from tkinter import *
 from tkinter import messagebox
+from password_generator import generate_password
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
 
-# ---------------------------- UI SETUP ------------------------------- #
-window = Tk()
-window.title('Password Manager')
-window.config(padx=50, pady=50, bg='white')
+def generate_my_password():
+    password_entry.delete(0, END)
+    password_entry.insert(0, generate_password())
+
+# ---------------------------- SAVE PASSWORD ------------------------------- #
 
 
 def save_data():
@@ -26,6 +27,12 @@ def save_data():
                 website_entry.delete(0, END)
                 password_entry.delete(0, END)
 
+# ---------------------------- UI SETUP ------------------------------- #
+
+
+window = Tk()
+window.title('Password Manager')
+window.config(padx=50, pady=50, bg='white')
 
 canvas = Canvas(width=200, height=200, bg='white', highlightthickness=0)
 bg_img = PhotoImage(file='logo.png')
@@ -52,7 +59,7 @@ password_label.grid(column=0, row=3, pady=5)
 password_entry = Entry(width=23, bg='white', fg='black', highlightthickness=1)
 password_entry.grid(column=1, row=3, pady=5)
 
-generate_button = Button(text='Generate', highlightbackground='white', highlightthickness=1)
+generate_button = Button(text='Generate', highlightbackground='white', highlightthickness=1, command=generate_my_password)
 generate_button.grid(column=2, row=3, pady=4)
 
 add_button = Button(text='Add', width=34, highlightbackground='white', highlightthickness=1, command=save_data)
