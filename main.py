@@ -14,8 +14,10 @@ def save_data():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
-    with open('data.txt', 'w') as file:
-        file.write(f'{website} | {email} | {password}')
+    with open('data.txt', 'a') as file:
+        file.write(f'{website} | {email} | {password}\n')
+    website_entry.delete(0, END)
+    password_entry.delete(0, END)
 
 
 canvas = Canvas(width=200, height=200, bg='white', highlightthickness=0)
