@@ -9,6 +9,7 @@ import pyperclip
 def generate_my_password():
     password_entry.delete(0, END)
     password_entry.insert(0, generate_password())
+    pyperclip.copy(password_entry.get())
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
