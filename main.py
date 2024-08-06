@@ -28,13 +28,22 @@ def save_data():
     if len(email) == 0 or len(password) == 0 or len(website) == 0:
         messagebox.showinfo(title='Error', message='Please enter a valid website, email, and password.')
     else:
-        with open('data.json', 'r') as file:
-            data = json.load(file)
-            data.update(new_data)
-        with open('data.json', 'w') as file:
-            json.dump(data, file, indent=4)
-        website_entry.delete(0, END)
-        password_entry.delete(0, END)
+        try:
+            with open('data.json', 'r') as file:
+                data = json.load(file)
+                data.update(new_data)
+        except FileNotFoundError:
+            with open('data.json', 'w') as file:
+                json.dump(new_data, file, indent=4)
+        except json.JSONDecodeError:
+            with open('data.json', 'w') as file:
+                json.dump(new_data, file, indent=4)
+        else:
+            with open('data.json', 'w') as file:
+                json.dump(data, file, indent=4)
+        finally:
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
